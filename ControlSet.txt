@@ -1,0 +1,260 @@
+C:\Python27\python.exe C:/Chayan/Automate_Valyria/AutomateValyria.py
+SUCCESS: The process "ValyriaTray.exe" with PID 20408 has been terminated.
+Control Identifiers:
+
+Dialog - 'Valyria Simulator'    (L777, T253, R1143, B767)
+[u'Valyria Simulator0', u'Valyria Simulator1', u'Valyria Simulator', u'Valyria SimulatorDialog', u'Dialog']
+child_window(title="Valyria Simulator", control_type="Window")
+   | 
+   | Thumb - ''    (L777, T253, R1143, B298)
+   | [u'', u'0', 'Thumb', u'Thumb0', u'Thumb1', u'1']
+   | child_window(auto_id="PART_WindowTitleThumb", control_type="Thumb")
+   | 
+   | Custom - 'Valyria Simulator'    (L777, T253, R1143, B298)
+   | [u'Valyria SimulatorCustom', u'Valyria Simulator2', u'Custom0', u'Custom1', 'Custom']
+   | child_window(title="Valyria Simulator", auto_id="PART_TitleBar", control_type="Custom")
+   |    | 
+   |    | Static - 'VALYRIA SIMULATOR'    (L789, T259, R1143, B291)
+   |    | [u'VALYRIA SIMULATORStatic', u'Static', u'Static1', u'Static0', u'VALYRIA SIMULATOR']
+   |    | child_window(title="VALYRIA SIMULATOR", control_type="Text")
+   | 
+   | Custom - ''    (L777, T298, R1143, B545)
+   | [u'VALYRIA SIMULATORCustom', u'2', 'Custom2']
+   |    | 
+   |    | Static - 'Boot Driver'    (L777, T298, R1143, B337)
+   |    | [u'Boot DriverStatic0', u'Boot DriverStatic1', u'Boot Driver0', u'Boot Driver1', u'Boot DriverStatic', u'Static2', u'Boot Driver']
+   |    | child_window(title="Boot Driver", control_type="Text")
+   |    |    | 
+   |    |    | Static - 'Boot Driver'    (L785, T306, R882, B329)
+   |    |    | [u'Boot DriverStatic2', u'Boot Driver2', u'Static3']
+   |    |    | child_window(title="Boot Driver", control_type="Text")
+   |    | 
+   |    | Static - 'MAC Address'    (L792, T337, R974, B376)
+   |    | [u'MAC Address', u'MAC AddressStatic1', u'MAC AddressStatic0', u'MAC AddressStatic', u'Static4', u'MAC Address1', u'MAC Address0']
+   |    | child_window(title="MAC Address", control_type="Text")
+   |    |    | 
+   |    |    | Static - 'MAC Address'    (L800, T344, R907, B368)
+   |    |    | [u'MAC AddressStatic2', u'Static5', u'MAC Address2']
+   |    |    | child_window(title="MAC Address", control_type="Text")
+   |    | 
+   |    | Edit - '02:50:41:00:00:01'    (L974, T337, R1128, B376)
+   |    | [u'Edit1', u'MAC AddressEdit', u'3', 'Edit', u'Edit0']
+   |    | child_window(title="02:50:41:00:00:01", control_type="Edit")
+   |    |    | 
+   |    |    | ScrollBar - ''    (L0, T0, R0, B0)
+   |    |    | ['ScrollBar', u'4', u'ScrollBar0', u'ScrollBar1']
+   |    |    | child_window(auto_id="VerticalScrollBar", control_type="ScrollBar")
+   |    |    | 
+   |    |    | ScrollBar - ''    (L0, T0, R0, B0)
+   |    |    | ['ScrollBar2', u'5']
+   |    |    | child_window(auto_id="HorizontalScrollBar", control_type="ScrollBar")
+   |    |    | 
+   |    |    | Button - 'r'    (L0, T0, R0, B0)
+   |    |    | [u'Button1', u'Button0', u'rButton0', u'rButton1', u'rButton', u'r0', u'r1', u'r', 'Button']
+   |    |    | child_window(title="r", auto_id="PART_ClearText", control_type="Button")
+   |    | 
+   |    | Static - 'Is Developer Mode'    (L792, T376, R974, B428)
+   |    | [u'Is Developer Mode', u'Is Developer Mode1', u'Is Developer Mode0', u'Is Developer ModeStatic1', u'Is Developer ModeStatic0', u'Static6', u'Is Developer ModeStatic']
+   |    | child_window(title="Is Developer Mode", control_type="Text")
+   |    |    | 
+   |    |    | Static - 'Is Developer Mode'    (L800, T383, R950, B407)
+   |    |    | [u'Is Developer Mode2', u'Is Developer ModeStatic2', u'Static7']
+   |    |    | child_window(title="Is Developer Mode", control_type="Text")
+   |    | 
+   |    | Button - ''    (L999, T376, R1104, B428)
+   |    | ['Button2', u'6', u'Is Developer ModeButton']
+   |    |    | 
+   |    |    | Thumb - ''    (L999, T376, R1104, B428)
+   |    |    | [u'7', 'Thumb2']
+   |    |    | child_window(auto_id="PART_DraggingThumb", control_type="Thumb")
+   |    | 
+   |    | Static - 'Non-System Disks'    (L792, T428, R974, B467)
+   |    | [u'Non-System Disks', u'Non-System DisksStatic0', u'Non-System DisksStatic1', u'Non-System DisksStatic', u'Non-System Disks0', u'Non-System Disks1', u'Static8']
+   |    | child_window(title="Non-System Disks", control_type="Text")
+   |    |    | 
+   |    |    | Static - 'Non-System Disks'    (L800, T436, R943, B460)
+   |    |    | [u'Non-System DisksStatic2', u'Non-System Disks2', u'Static9']
+   |    |    | child_window(title="Non-System Disks", control_type="Text")
+   |    | 
+   |    | Edit - '2'    (L974, T428, R1062, B467)
+   |    | [u'8', u'Non-System DisksEdit', 'Edit2']
+   |    | child_window(title="2", auto_id="PART_TextBox", control_type="Edit")
+   |    |    | 
+   |    |    | ScrollBar - ''    (L0, T0, R0, B0)
+   |    |    | ['ScrollBar3', u'9']
+   |    |    | child_window(auto_id="VerticalScrollBar", control_type="ScrollBar")
+   |    |    | 
+   |    |    | ScrollBar - ''    (L0, T0, R0, B0)
+   |    |    | [u'10', 'ScrollBar4']
+   |    |    | child_window(auto_id="HorizontalScrollBar", control_type="ScrollBar")
+   |    |    | 
+   |    |    | Button - 'r'    (L0, T0, R0, B0)
+   |    |    | [u'rButton2', u'r2', 'Button3']
+   |    |    | child_window(title="r", auto_id="PART_ClearText", control_type="Button")
+   |    | 
+   |    | Button - ''    (L1059, T431, R1092, B464)
+   |    | [u'11', 'Button4']
+   |    | child_window(auto_id="PART_NumericUp", control_type="Button")
+   |    | 
+   |    | Button - ''    (L1092, T431, R1125, B464)
+   |    | ['Button5', u'12']
+   |    | child_window(auto_id="PART_NumericDown", control_type="Button")
+   |    | 
+   |    | Static - 'System Disks'    (L792, T467, R974, B506)
+   |    | [u'System Disks0', u'System Disks1', u'System DisksStatic', u'System Disks', u'System DisksStatic0', u'System DisksStatic1', u'Static10']
+   |    | child_window(title="System Disks", control_type="Text")
+   |    |    | 
+   |    |    | Static - 'System Disks'    (L800, T475, R902, B499)
+   |    |    | [u'System Disks2', u'System DisksStatic2', u'Static11']
+   |    |    | child_window(title="System Disks", control_type="Text")
+   |    | 
+   |    | Edit - '3'    (L974, T467, R1062, B506)
+   |    | [u'System DisksEdit', u'13', 'Edit3']
+   |    | child_window(title="3", auto_id="PART_TextBox", control_type="Edit")
+   |    |    | 
+   |    |    | ScrollBar - ''    (L0, T0, R0, B0)
+   |    |    | ['ScrollBar5', u'14']
+   |    |    | child_window(auto_id="VerticalScrollBar", control_type="ScrollBar")
+   |    |    | 
+   |    |    | ScrollBar - ''    (L0, T0, R0, B0)
+   |    |    | [u'15', 'ScrollBar6']
+   |    |    | child_window(auto_id="HorizontalScrollBar", control_type="ScrollBar")
+   |    |    | 
+   |    |    | Button - 'r'    (L0, T0, R0, B0)
+   |    |    | ['Button6', u'rButton3', u'r3']
+   |    |    | child_window(title="r", auto_id="PART_ClearText", control_type="Button")
+   |    | 
+   |    | Button - ''    (L1059, T470, R1092, B503)
+   |    | ['Button7', u'16']
+   |    | child_window(auto_id="PART_NumericUp", control_type="Button")
+   |    | 
+   |    | Button - ''    (L1092, T470, R1125, B503)
+   |    | ['Button8', u'17']
+   |    | child_window(auto_id="PART_NumericDown", control_type="Button")
+   |    | 
+   |    | Static - 'USB Disks'    (L792, T506, R974, B545)
+   |    | [u'USB Disks', u'USB DisksStatic', u'USB Disks0', u'USB Disks1', u'USB DisksStatic0', u'USB DisksStatic1', u'Static12']
+   |    | child_window(title="USB Disks", control_type="Text")
+   |    |    | 
+   |    |    | Static - 'USB Disks'    (L800, T514, R878, B538)
+   |    |    | [u'USB Disks2', u'USB DisksStatic2', u'Static13']
+   |    |    | child_window(title="USB Disks", control_type="Text")
+   |    | 
+   |    | Edit - '1'    (L974, T506, R1062, B545)
+   |    | [u'18', u'USB DisksEdit', 'Edit4']
+   |    | child_window(title="1", auto_id="PART_TextBox", control_type="Edit")
+   |    |    | 
+   |    |    | ScrollBar - ''    (L0, T0, R0, B0)
+   |    |    | ['ScrollBar7', u'19']
+   |    |    | child_window(auto_id="VerticalScrollBar", control_type="ScrollBar")
+   |    |    | 
+   |    |    | ScrollBar - ''    (L0, T0, R0, B0)
+   |    |    | [u'20', 'ScrollBar8']
+   |    |    | child_window(auto_id="HorizontalScrollBar", control_type="ScrollBar")
+   |    |    | 
+   |    |    | Button - 'r'    (L0, T0, R0, B0)
+   |    |    | [u'rButton4', 'Button9', u'r4']
+   |    |    | child_window(title="r", auto_id="PART_ClearText", control_type="Button")
+   |    | 
+   |    | Button - ''    (L1059, T509, R1092, B542)
+   |    | ['Button10', u'21']
+   |    | child_window(auto_id="PART_NumericUp", control_type="Button")
+   |    | 
+   |    | Button - ''    (L1092, T509, R1125, B542)
+   |    | ['Button11', u'22']
+   |    | child_window(auto_id="PART_NumericDown", control_type="Button")
+   | 
+   | Custom - ''    (L777, T545, R1143, B637)
+   | [u'23', 'Custom3']
+   |    | 
+   |    | Static - 'Door Driver'    (L777, T545, R1143, B584)
+   |    | [u'Door DriverStatic0', u'Door DriverStatic', u'Door DriverStatic1', u'Door Driver', u'Door Driver0', u'Door Driver1', u'Static14']
+   |    | child_window(title="Door Driver", control_type="Text")
+   |    |    | 
+   |    |    | Static - 'Door Driver'    (L785, T553, R884, B577)
+   |    |    | [u'Door DriverStatic2', u'Static15', u'Door Driver2']
+   |    |    | child_window(title="Door Driver", control_type="Text")
+   |    | 
+   |    | Static - 'Is Door Open'    (L792, T584, R974, B637)
+   |    | [u'Is Door OpenStatic1', u'Is Door OpenStatic0', u'Is Door OpenStatic', u'Is Door Open1', u'Is Door Open', u'Static16', u'Is Door Open0']
+   |    | child_window(title="Is Door Open", control_type="Text")
+   |    |    | 
+   |    |    | Static - 'Is Door Open'    (L800, T592, R906, B616)
+   |    |    | [u'Is Door OpenStatic2', u'Static17', u'Is Door Open2']
+   |    |    | child_window(title="Is Door Open", control_type="Text")
+   |    | 
+   |    | Static - ''    (L0, T0, R0, B0)
+   |    | [u'24', u'Static18']
+   |    | 
+   |    | Button - ''    (L999, T584, R1104, B637)
+   |    | ['Button12', u'25']
+   |    | child_window(auto_id="Switch", control_type="Button")
+   |    |    | 
+   |    |    | Thumb - ''    (L999, T584, R1104, B637)
+   |    |    | [u'26', 'Thumb3']
+   |    |    | child_window(auto_id="PART_DraggingThumb", control_type="Thumb")
+   | 
+   | Custom - ''    (L777, T637, R1143, B767)
+   | [u'27', 'Custom4']
+   |    | 
+   |    | Static - 'Watchdog Driver'    (L777, T637, R1143, B676)
+   |    | [u'Watchdog DriverStatic', u'Watchdog DriverStatic1', u'Watchdog DriverStatic0', u'Static19', u'Watchdog Driver1', u'Watchdog Driver0', u'Watchdog Driver']
+   |    | child_window(title="Watchdog Driver", control_type="Text")
+   |    |    | 
+   |    |    | Static - 'Watchdog Driver'    (L785, T644, R928, B668)
+   |    |    | [u'Static20', u'Watchdog DriverStatic2', u'Watchdog Driver2']
+   |    |    | child_window(title="Watchdog Driver", control_type="Text")
+   |    | 
+   |    | Static - 'Is Watchdog Enabled'    (L792, T676, R974, B728)
+   |    | [u'Is Watchdog EnabledStatic0', u'Is Watchdog EnabledStatic1', u'Is Watchdog Enabled1', u'Is Watchdog Enabled', u'Static21', u'Is Watchdog EnabledStatic', u'Is Watchdog Enabled0']
+   |    | child_window(title="Is Watchdog Enabled", control_type="Text")
+   |    |    | 
+   |    |    | Static - 'Is Watchdog Enabled'    (L800, T683, R967, B707)
+   |    |    | [u'Is Watchdog EnabledStatic2', u'Static22', u'Is Watchdog Enabled2']
+   |    |    | child_window(title="Is Watchdog Enabled", control_type="Text")
+   |    | 
+   |    | Button - ''    (L999, T676, R1104, B728)
+   |    | ['Button13', u'28', u'Is Watchdog EnabledButton']
+   |    |    | 
+   |    |    | Thumb - ''    (L999, T676, R1104, B728)
+   |    |    | [u'29', 'Thumb4']
+   |    |    | child_window(auto_id="PART_DraggingThumb", control_type="Thumb")
+   |    | 
+   |    | Static - 'Remaining Interval'    (L792, T728, R974, B767)
+   |    | [u'Remaining IntervalStatic', u'Static23', u'Remaining IntervalStatic0', u'Remaining IntervalStatic1', u'Remaining Interval0', u'Remaining Interval1', u'Remaining Interval']
+   |    | child_window(title="Remaining Interval", control_type="Text")
+   |    |    | 
+   |    |    | Static - 'Remaining Interval'    (L800, T736, R947, B760)
+   |    |    | [u'Remaining Interval2', u'Static24', u'Remaining IntervalStatic2']
+   |    |    | child_window(title="Remaining Interval", control_type="Text")
+   |    | 
+   |    | Static - '-1'    (L1043, T736, R1060, B760)
+   |    | [u'-1', u'Static25', u'-1Static']
+   |    | child_window(title="-1", control_type="Text")
+   | 
+   | Thumb - ''    (L777, T253, R1143, B298)
+   | [u'30', 'Thumb5']
+   | child_window(auto_id="PART_FlyoutModalDragMoveThumb", control_type="Thumb")
+   | 
+   | Button - ''    (L0, T0, R0, B0)
+   | ['Button14', u'31']
+   | child_window(auto_id="PART_Min", control_type="Button")
+   | 
+   | Button - ''    (L0, T0, R0, B0)
+   | ['Button15', u'32']
+   | child_window(auto_id="PART_Max", control_type="Button")
+   | 
+   | Button - ''    (L0, T0, R0, B0)
+   | ['Button16', u'33']
+   | child_window(auto_id="PART_Close", control_type="Button")
+Traceback (most recent call last):
+  File "C:/Chayan/Automate_Valyria/AutomateValyria.py", line 79, in <module>
+    valyria.click_Is_door_open()
+  File "C:/Chayan/Automate_Valyria/AutomateValyria.py", line 74, in click_Is_door_open
+    raise e.original_exception
+AttributeError: 'ElementAmbiguousError' object has no attribute 'original_exception'
+
+
+destroy
+
+Process finished with exit code 1
