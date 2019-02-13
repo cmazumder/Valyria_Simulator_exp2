@@ -1,9 +1,49 @@
 from pywinauto import application, timings
 from time import sleep
+from datetime import datetime
 from os import system
 from setup_File import Env_variable as ConfigVariable
 import pyodbc
 import psutil
+import logging
+from logging.handlers import RotatingFileHandler
+
+LEVELS = {'debug': logging.DEBUG,
+          'info': logging.INFO,
+          'warning': logging.WARNING,
+          'error': logging.ERROR,
+          'critical': logging.CRITICAL}
+
+LOGFILE = ConfigVariable.get("log_path")
+log_handler = RotatingFileHandler(LOGFILE, maxBytes=1048576, backupCount=5)
+log_handler.setFormatter(logging.Formatter('%(asctime)s %(levelname)s: %(message)s ' '[in %(pathname)s:%(lineno)d]'))
+logging = logging.getLogger("Python_Valyria")
+
+logging.addHandler(log_handler)
+
+try:
+	set_log_level = LEVELS.get(ConfigVariable.get("log_level"))
+	logging.setLevel(set_log_level)
+	logging.addHandler(log_handler)
+except Exception as E:
+	logging.setLevel(logging.debug)
+	print 'Default log level set to debug\n' \
+	      'Cannot set Level as {}\n' \
+	      'Reason: '.format(ConfigVariable.get("AutomateValyria_log_level"), E.message)
+
+
+# logger = logging.getLogger('Python_Valyria')
+# hdlr = logging.FileHandler(ConfigVariable.get("AutomateValyria_log_path"))
+# formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
+# hdlr.setFormatter(formatter)
+# logger.addHandler(hdlr)
+# try:
+# 	logger.setLevel(logging.ConfigVariable.get("AutomateValyria_log_level"))
+# except Exception as E:
+# 	logger.setLevel(logging.debug)
+# 	print 'Default log level set to debug\n' \
+# 	      'Cannot set Level as {}\n' \
+# 	      'Reason: '.format(ConfigVariable.get("AutomateValyria_log_level"), E.message)
 
 
 class Main:
@@ -16,29 +56,38 @@ class Main:
 		self.door_count_from_database_start = 0
 		self.door_count_from_database_end = 0
 
-	def check_if_process_is_running(self, processName):
+	def __del__(self):
+		logging.info('Test End: %s', datetime.now())
+		self.write_result_to_file()
+		logging.critical('Database destroyed')
+
+	def check_if_process_is_running(self, process_name):
 		"""
-		:param processName: Check the status of the process passed to this function
+		:param process_name: Check the status of the process passed to this function
 		:return: True of False
 		"""
 		try:
-			process = psutil.win_service_get(processName)
+			process = psutil.win_service_get(process_name)
 			if process.status() == 'running':
-				print '{} is {}'.format(processName, process.status())
+				logging.info('%s is %s', process_name, process.status())
 				return True
 			else:
+				logging.info('%s is %s', process_name, process.status())
 				return False
-		except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
+		except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess) as E:
 			pass
-			print 'check what?'
+			logging.error('%s is %s', process_name, process.status())
+			logging.error('Error message: %s', E.message)
 		return False
 
 	def run_test_service_not_running(self, valyria_object):
 		try:
 			while True:
 				valyria_object.toggle_valyria_door_switch()
-		except KeyboardInterrupt:
-			print "Door open count (Simulator) : {}".format(valyria_object.count_door_open)
+				logging.debug('Toggle : %s', valyria_object.count_door_open + 1)
+		except KeyboardInterrupt as E:
+			logging.debug("Keyboard Interrup %s", E.message)
+			logging.info("Door open count (Simulator) : %s", valyria_object.count_door_open)
 			pass
 
 	def run_test_service_running(self, valyria_object, database_object):
@@ -46,24 +95,40 @@ class Main:
 		try:
 			while True:
 				valyria_object.open_valyria_door_switch()
+				logging.debug('Door open')
 				if database_object.get_LogicCageOpen_status() == 1:
+					logging.debug('Door status database: %s', database_object.get_LogicCageOpen_status())
 					valyria_object.close_valyria_door_switch()
+					logging.debug('Door Closed')
 				elif database_object.get_LogicCageOpen_status() == 0:
-					print 'Door status is already closed \nIssue with Valyria driver and database sync'
+					logging.error('Door status is already closed \nIssue with Valyria driver and database sync')
+					logging.error('Door status database: %s', database_object.get_LogicCageOpen_status())
 					exit(0)
 				else:
-					print 'Issue is database for door status'
+					logging.error('Issue is database for door status')
 					exit(0)
 
 		except KeyboardInterrupt:
 			self.door_count_from_database_end = database_object.get_LogicCageOpen_count()
-			print "Door open count (Simulator) : {}".format(valyria_object.count_door_open)
-			print "Door open value_start (database) : {}".format(self.door_count_from_database_start)
-			print "Door open value_end (database) : {}".format(self.door_count_from_database_end)
-			print "Door open count (database) : {}".format(self.door_count_from_database_end
+			logging.info('Door open count (Simulator) : %s', valyria_object.count_door_open)
+			logging.info('Door open value_start (database) :  %s', self.door_count_from_database_start)
+			logging.info('Door open value_end (database) : %s', self.door_count_from_database_end)
+			logging.info('Door open count (database) : %s', self.door_count_from_database_end
 			                                               - self.door_count_from_database_start)
 			pass
 
+	def write_result_to_file(self, simulator_count, db_door_count_start, db_door_count_end):
+		with open(ConfigVariable.get("result_path"), 'w') as file_handler:
+			output_string = "Door open count (Simulator) {}, simulator_count)" \
+			                "Door open value_start (database) :  {}" \
+			                "Door open value_end (database) : {}" \
+			                "Door open count (database) : {}".format(simulator_count,
+			                                                         db_door_count_start,
+			                                                         db_door_count_end,
+			                                                         db_door_count_end - db_door_count_start)
+			print output_string
+			file_handler.write("%s" % output_string)
+			file_handler.close()
 
 class Database:
 	database_con = None
@@ -87,12 +152,16 @@ class Database:
 
 			self.database_con = pyodbc.connect(connection_string)
 			self.database_cursor = self.database_con.cursor()
-		except pyodbc.Error as E:
-			print 'Cannot setup database connection to %s \n %s', self.db_name, E.message
+			logging.info('Got db connection to %s : %s', self.db_name, self.database_con)
+		except pyodbc.Error as pyodbc_error:
+			logging.error('Cannot setup database connection to %s', self.db_name)
+			logging.error('Issue %s', pyodbc_error.message)
 
 	def __del__(self):
 		""" destructor"""
+		logging.info('Closing database connection')
 		self.database_con.close()
+		logging.critical('Database destroyed')
 
 	def execute_sql_query(self, sql_query):
 		"""
@@ -100,14 +169,15 @@ class Database:
 		:param sql_query: Sql text query
 		:return: data
 		"""
-
+		logging.debug('SQL query:  %s', sql_query)
 		try:
 			if self.database_con:
 				self.database_cursor.execute(sql_query)
-				data = self.database_cursor.fetchall()
-				return data
-		except pyodbc.Error as E:
-			print 'Problem with objects\'s misc_cursor in execute query \n %s', E.args
+				fetch_db_result = self.database_cursor.fetchall()
+				logging.debug('Result from query:  %s', fetch_db_result)
+				return fetch_db_result
+		except pyodbc.Error as pyodbc_error:
+			logging.error('Problem with query\nargs: %s\nMessage: %s', pyodbc_error.args, pyodbc_error.message)
 		return None
 
 	def get_LogicCageOpen_count(self):
@@ -115,9 +185,10 @@ class Database:
 		result_from_query = self.execute_sql_query(sql_query=sql_query)
 		if result_from_query:
 			value_from_list = [x[4] for x in result_from_query]
+			logging.debug('Value get_logicCageOpenCount: %s', value_from_list)
 			return value_from_list[0]
 		else:
-			print 'Logic cage open count not available in database'
+			logging.error('Logic cage open count not available in database')
 		return None
 
 	def get_LogicCageOpen_status(self):
@@ -125,9 +196,10 @@ class Database:
 		result_from_query = self.execute_sql_query(sql_query=sql_query)
 		if result_from_query:
 			value_from_list = [x[4] for x in result_from_query]
+			logging.debug('Value get_LogicCageOpen_status: %s', value_from_list)
 			return value_from_list[0]
 		else:
-			print 'Logic cage status not available in database'
+			logging.error('Logic cage status not available in database')
 		return None
 
 
@@ -145,7 +217,7 @@ class ValyriaAutomate:
 
 	def __del__(self):
 		# self.terminate_valyria()
-		print '\ndestroy'
+		logging.critical('ValyriaAutomate destroyed')
 
 	def check_application_started(self):
 		"""
@@ -175,13 +247,17 @@ class ValyriaAutomate:
 			self.valyria_handler.wait('ready')
 
 		except timings.TimeoutError as exc:
-			print("timed out")
-			print exc
+			logging.error('timed out')
+			logging.error(exc.message)
+			logging.debug(exc)
 
 	def terminate_valyria(self):
 		if self.valyria_application:
+			logging.debug('Kill valyria application')
 			self.valyria_application.kill()
 		else:
+			logging.info('Valyria already running')
+			logging.debug('Terminate valyria application from system command')
 			system("TASKKILL /F /IM ValyriaTray.exe")
 
 	def print_identifiers(self):
@@ -197,39 +273,25 @@ class ValyriaAutomate:
 			# self.valyria_application.Dialog.Custom3.Button12.draw_outline()
 			self.valyria_application.Dialog.Custom3.Button12.click_input()
 		except Exception as e:
-			print e.message
+			logging.error(e.message)
 
 	def close_valyria_door_switch(self):
 		self.click_is_door_open()
+		logging.debug('close_valyria_door_switch')
 
 	def open_valyria_door_switch(self):
 		self.click_is_door_open()
 		self.count_door_open += 1
+		logging.debug('open_valyria_door_switch: %s', self.count_door_open)
 
 	def toggle_valyria_door_switch(self):
+		logging.debug('toggle_valyria_door_switch')
 		self.open_valyria_door_switch()
-		self.closde_valyria_door_switch()
-
-
-def check_if_process_is_running(processName):
-	"""
-	:param processName: Check the status of the process passed to this function
-	:return: True of False
-	"""
-	try:
-		process = psutil.win_service_get(processName)
-		if process.status() == 'running':
-			print '{} is {}'.format(processName, process.status())
-			return True
-		else:
-			return False
-	except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
-		pass
-		print 'check what?'
-	return False
+		self.close_valyria_door_switch()
 
 
 if __name__ == '__main__':
+	logging.info('Test start: %s', datetime.now())
 	valyria = ValyriaAutomate()
 	# valyria.print_identifiers()
 	test = Main()
@@ -238,10 +300,10 @@ if __name__ == '__main__':
 	if test.check_if_process_is_running(dummy_process):
 		vertex_database = Database('Vertex')
 		if vertex_database:
-			print "Connected to database"
+			logging.info('Connected to database')
 			test.run_test_service_running(valyria_object=valyria, database_object=vertex_database)
 		else:
-			print 'Could not connect to database'
+			logging.info('Could not connect to database')
 	else:
-		print '{} is stopped. Running test without ControllerMeter values'.format(aristocrat_vertex_process)
+		logging.info('%s is stopped. Running test without ControllerMeter values', aristocrat_vertex_process)
 		test.run_test_service_not_running(valyria_object=valyria)
